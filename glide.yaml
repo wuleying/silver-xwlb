@@ -1,0 +1,7 @@
+package: github.com/wuleying/silver-xwlb
+import:
+- package: github.com/Unknwon/goconfig
+- package: github.com/go-clog/clog
+  version: ^1.2.0
+- package: github.com/rcrowley/go-metrics
+- package: github.com/vrischmann/go-metrics-influxdb
