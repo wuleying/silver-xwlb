@@ -12,5 +12,5 @@ var (
 	// 模板目录
 	TemplateDir = RootDir + "/admin/web/template"
 	// 当前时间
-	CurrentTime = time.Now().String()
+	CurrentTime = time.Now().Local()
 )
