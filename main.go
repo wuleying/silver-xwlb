@@ -40,5 +40,4 @@ func main() {
 		href, _ := contentSelection.Find("a").Attr("href")
 		clog.Info("%d. %s, %s", i+1, title, href)
 	})
-
 }
