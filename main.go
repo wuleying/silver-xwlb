@@ -2,14 +2,13 @@ package main
 
 import (
 	"fmt"
+	"github.com/PuerkitoBio/goquery"
 	"github.com/go-clog/clog"
 	"github.com/wuleying/silver-xwlb/config"
 	"github.com/wuleying/silver-xwlb/exceptions"
 	"github.com/wuleying/silver-xwlb/globals"
 	"github.com/wuleying/silver-xwlb/llog"
 	"github.com/wuleying/silver-xwlb/metrics"
-	"io/ioutil"
-	"net/http"
 )
 
 func main() {
@@ -33,19 +32,13 @@ func main() {
 	targetUrl := fmt.Sprintf(cfg["urls"]["xwlb_url"], globals.CurrentTime.AddDate(0, 0, -1).Format("20060102"))
 	clog.Info("targetUrl = %s", targetUrl)
 
-	resp, err := http.Get(targetUrl)
+	doc, err := goquery.NewDocument(targetUrl)
+	exceptions.CheckError(err)
 
-	if err != nil {
-		clog.Fatal(globals.ClogDisplayInfo, "Get target url context failed: %s", err.Error())
-	}
+	doc.Find("ul li").Each(func(i int, contentSelection *goquery.Selection) {
+		title := contentSelection.Find(".title").Text()
+		href, _ := contentSelection.Find("a").Attr("href")
+		clog.Info("%d. %s, %s", i+1, title, href)
+	})
 
-	defer resp.Body.Close()
-
-	body, err := ioutil.ReadAll(resp.Body)
-
-	if err != nil {
-		clog.Fatal(globals.ClogDisplayInfo, "Read context failed: %s", err.Error())
-	}
-
-	clog.Info(string(body))
 }
