@@ -30,9 +30,9 @@ func main() {
 
 	// 抓取目标页
 	targetURL := fmt.Sprintf(
-		cfg["urls"]["xwlb_url"],
+		cfg["urls"]["xwlbURL"],
 		globals.CurrentTime.AddDate(0, 0, -1).Format("20060102"))
-	clog.Info("targetUrl = %s", targetURL)
+	clog.Info("targetURL = %s", targetURL)
 
 	doc, err := goquery.NewDocument(targetURL)
 	exceptions.CheckError(err)
