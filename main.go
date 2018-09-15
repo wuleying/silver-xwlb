@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/go-clog/clog"
+	"github.com/huichen/sego"
 	"github.com/wuleying/silver-xwlb/config"
 	"github.com/wuleying/silver-xwlb/exceptions"
 	"github.com/wuleying/silver-xwlb/globals"
@@ -37,9 +38,18 @@ func main() {
 	doc, err := goquery.NewDocument(targetURL)
 	exceptions.CheckError(err)
 
+	// 载入词典
+	var segmenter sego.Segmenter
+	segmenter.LoadDictionary(fmt.Sprintf("%s/%s", globals.RootDir, "vendor/github.com/huichen/sego/data/dictionary.txt"))
+
 	doc.Find("ul li").Each(func(i int, contentSelection *goquery.Selection) {
 		title := contentSelection.Find(".title").Text()
 		href, _ := contentSelection.Find("a").Attr("href")
+
 		clog.Info("%d. %s, %s", i+1, title, href)
+
+		// 中文分词
+		segments := segmenter.Segment([]byte(title))
+		fmt.Println(sego.SegmentsToString(segments, false))
 	})
 }

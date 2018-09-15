@@ -1,10 +1,16 @@
 hash: 96a5542c52638bb17447b489a6ffec4a9a1c499110c46439e18c73a29f65e62e
-updated: 2018-08-31T15:10:36.882867255+08:00
+updated: 2018-09-15T09:40:42.352894285+08:00
 imports:
+- name: github.com/adamzy/cedar-go
+  version: 80a9c64b256db37ac20aff007907c649afb714f1
+- name: github.com/andybalholm/cascadia
+  version: 901648c87902174f774fac311d7f176f8647bdaa
 - name: github.com/fatih/color
   version: 507f6050b8568533fb3f5504de8e5205fa62a114
 - name: github.com/go-clog/clog
   version: 3bc2eaba5fa35df0338549cc1180dc45f6fc2a16
+- name: github.com/huichen/sego
+  version: 3f3c8a8cfaccd7283fb524996d1cd19a8fd228d2
 - name: github.com/influxdata/influxdb
   version: 1320c09edd93e7acf9e73a375f6f0d3f30b6d19f
   subpackages:
@@ -15,12 +21,19 @@ imports:
   version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
 - name: github.com/mattn/go-isatty
   version: 6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c
+- name: github.com/PuerkitoBio/goquery
+  version: dc2ec5c7ca4d9aae063b79b9f581dd3ea6afd2b2
 - name: github.com/rcrowley/go-metrics
   version: e2704e165165ec55d062f5919b4b29494e9fa790
 - name: github.com/Unknwon/goconfig
   version: ef1e4c783f8f0478bd8bff0edb3dd0bade552599
 - name: github.com/vrischmann/go-metrics-influxdb
   version: 43af8332c303f62ef62663b02b3b7d8a9802002a
+- name: golang.org/x/net
+  version: 92b859f39abd2d91a854c9f9c4621b2f5054a92d
+  subpackages:
+  - html
+  - html/atom
 - name: golang.org/x/sys
   version: d8e400bc7db4870d786864138af681469693d18c
   subpackages:

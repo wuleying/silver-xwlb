@@ -35,7 +35,6 @@ build:
 clean:
 	$(GO_CLEAN)
 	rm $(BIN_DIR)/$(PROJECT_NAME)
-	rm $(BIN_DIR)/$(PROJECT_NAME)-cli
 	@echo "$(CUR_TIME) [INFO ] Clean completed"
 
 fmt:
@@ -143,6 +142,7 @@ get:
 	$(GO_GET) github.com/rcrowley/go-metrics
 	$(GO_GET) github.com/vrischmann/go-metrics-influxdb
 	$(GO_GET) github.com/PuerkitoBio/goquery
+	$(GO_GET) github.com/huichen/sego
 	$(GO_GET) honnef.co/go/tools/cmd/staticcheck
 	$(GO_GET) honnef.co/go/tools/cmd/gosimple
 	$(GO_GET) honnef.co/go/tools/cmd/unused
