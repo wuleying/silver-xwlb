@@ -50,6 +50,6 @@ func main() {
 
 		// 中文分词
 		segments := segmenter.Segment([]byte(title))
-		fmt.Println(sego.SegmentsToString(segments, false))
+		clog.Info(sego.SegmentsToString(segments, false))
 	})
 }
