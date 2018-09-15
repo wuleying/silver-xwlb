@@ -40,7 +40,7 @@ func main() {
 
 	// 载入词典
 	var segmenter sego.Segmenter
-	segmenter.LoadDictionary(fmt.Sprintf("%s/%s", globals.RootDir, "vendor/github.com/huichen/sego/data/dictionary.txt"))
+	segmenter.LoadDictionary(fmt.Sprintf("%s%s", globals.RootDir, "/data/dictionary.txt"))
 
 	doc.Find("ul li").Each(func(i int, contentSelection *goquery.Selection) {
 		title := contentSelection.Find(".title").Text()
