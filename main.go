@@ -10,6 +10,7 @@ import (
 	"github.com/wuleying/silver-xwlb/globals"
 	"github.com/wuleying/silver-xwlb/llog"
 	"github.com/wuleying/silver-xwlb/metrics"
+	"net/http"
 )
 
 func main() {
@@ -35,7 +36,13 @@ func main() {
 		globals.CurrentTime.AddDate(0, 0, -1).Format("20060102"))
 	clog.Info("targetURL = %s", targetURL)
 
-	doc, err := goquery.NewDocument(targetURL)
+	// Request the HTML page.
+	request, err := http.Get(targetURL)
+	exceptions.CheckError(err)
+	defer request.Body.Close()
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(request.Body)
 	exceptions.CheckError(err)
 
 	// 载入词典
