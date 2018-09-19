@@ -50,13 +50,15 @@ func main() {
 	segmenter.LoadDictionary(fmt.Sprintf("%s%s", globals.RootDir, "/data/dictionary.txt"))
 
 	doc.Find("ul li").Each(func(i int, contentSelection *goquery.Selection) {
-		title := contentSelection.Find(".title").Text()
-		href, _ := contentSelection.Find("a").Attr("href")
+		if i > 0 {
+			title := contentSelection.Find(".title").Text()
+			href, _ := contentSelection.Find("a").Attr("href")
 
-		clog.Info("%d. %s, %s", i+1, title, href)
+			clog.Info("%d. %s, %s", i, title, href)
 
-		// 中文分词
-		segments := segmenter.Segment([]byte(title))
-		clog.Info(sego.SegmentsToString(segments, false))
+			// 中文分词
+			segments := segmenter.Segment([]byte(title))
+			clog.Info(sego.SegmentsToString(segments, false))
+		}
 	})
 }
